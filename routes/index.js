@@ -7,15 +7,12 @@ const {createAppointment, getAppointment} = require('../service/appointment')
 const {createDocument, getDocument, downloadDocument, shareDocument} = require('../service/document')
 var multer  = require('multer')
 var upload = multer({ dest: './files/' })
-// const createHotel = require('../service/hotel').createHotel
-// const getHotel = require('../service/hotel').getHotel
 module.exports = function (server) {
 	server.get("/clinic/get", getClinic);
 	server.post("/clinic/create", createClinic);
 	server.get("/user/get", getUser);
 	server.post("/user/login", login);
 	server.post("/user/create", createUser);
-	// server.post("/login", createHotel);
 	server.get("/appointment/get", getAppointment);
 	server.post("/appointment/create", createAppointment);
 	server.get("/doc/get", getDocument);

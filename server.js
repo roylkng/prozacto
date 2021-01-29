@@ -55,19 +55,9 @@ try {
 	});
 
 	// use JWT auth to secure the api
-	// app.use(jwt());
-
-	// global error handler
-	// app.use(errorHandler);
-
+	app.use(jwt({ secret: privatekey, algorithms: ['HS256'] }).unless({path: [/^\/login\/.*/, /^\/clinic\/.*/, /^\/user\/.*/]}));
 	// api routes
-	// console.log(routes.toString());
-    app.use(jwt({ secret: privatekey, algorithms: ['HS256'] }).unless({path: [/^\/login\/.*/, /^\/clinic\/.*/, /^\/user\/.*/]}));
     routes(app);
-	// app.use(express.static('client/dist'));
-	// app.get('*', (req, res) => { 
-	// 	res.sendFile('index.html', { root: "client/dist"});
-	// });
 
 	http.createServer(app).listen(app.get('port'), function () {
 		console.log('Express HTTPS server listening on port ' + app.get('port'));
